@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <title>Currency Converter</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+
+<div class="p-3 mb-2 bg-primary text-white general-div first" >
+
+    <div  id= "user-input-div" >
+
+        <form th:action="@{/index}" th:object="${selectedcurrencies}" method="post">
+            <p class="user-input value"><span>Amount</span> <br><input type="number" step="any" min=0 th:field="*{amount}" required/></p>
+            <p class="user-input"><span>From </span><br>
+                <select th:field="*{first}">
+                    <option th:each="i : ${valuteModels}" th:value="${i.getName()}" th:text="${i.getName()}" >USD</option>
+                </select>
+            </p>
+            <p class="user-input"><span>To</span> <br>
+                <select th:field="*{second}">
+                    <option th:each="i : ${valuteModels}" th:value="${i.getName()}" th:text="${i.getName()}" >EURO</option>
+                </select>
+            </p>
+
+            <p class="user-input button"><br id="br-input"><input type="submit" value="Convert" class="btn-outline-success bg-color-white"/></p>
+        </form>
+    </div>
+
+</div>
+
+<div class="p-3 mb-2 bg-primary text-white resultdiv">
+
+
+    <p id="from" th:utext="${results[0]}">1 USD = <br></p>
+    <p id="to" th:text="${results[1]}" >&nbsp; 77 RUR <br></p>
+
+
+</div>
+
+<div id="rates-div" class="p-3 mb-2 bg-primary text-white">Currency Exchange Rates </div>
+
+<div class="bg-primary text-white rates">
+
+    <div class="col-md-4 table-1">
+    <table class="table-responsive borderless rates1">
+        <thead>
+        <tr>
+            <th scope="col" class="col-md-3">Currency</th>
+            <th scope="col" class="col-md-3">Symbol</th>
+            <th scope="col" class="col-md-3 p-left">Price In Rubles</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="i : ${valuteModels}">
+            <td class="col-md-4" th:text="${i.getName()}">Австралийский доллар</td>
+            <td class="col-md-4" th:text="${i.getCharCode()}">Австралийский доллар</td>
+            <td class="col-md-4" th:text="${i.getValue()}">771</td>
+        </tr>
+
+        </tbody>
+    </table>
+    </div>
+
+</div>
+
+
+</body>
+</html>
