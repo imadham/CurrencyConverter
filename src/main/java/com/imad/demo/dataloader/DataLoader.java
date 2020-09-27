@@ -6,6 +6,8 @@ import com.imad.demo.services.ValuteService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import javax.xml.bind.JAXBException;
+import java.net.MalformedURLException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,11 +28,19 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Set<ValuteModel> valutesModel = new HashSet<>();
-        valutesModel = gettingData.getValutesModel();
+        try {
+            Set<ValuteModel> valutesModel = new HashSet<>();
+            valutesModel = gettingData.getValutesModel();
 
-        for (ValuteModel valuteModel : valutesModel){
-            valuteService.save(valuteModel);
+            if (valutesModel.size() > 0) {
+                valuteService.deleteAll();
+                for (ValuteModel valuteModel : valutesModel) {
+                    valuteService.save(valuteModel);
+                }
+            }
+        }catch (Exception e)
+        {
+            throw e;
         }
     }
 }

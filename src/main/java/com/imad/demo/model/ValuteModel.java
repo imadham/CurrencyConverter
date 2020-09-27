@@ -13,18 +13,19 @@ import java.time.LocalDate;
 public class ValuteModel {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
-    @Column(name = "numcode")
-    private String numCode;
+    @SequenceGenerator(name="seq-gen",sequenceName="MY_SEQ_GEN", initialValue=1, allocationSize=1)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="seq-gen")
+    //@GenericGenerator(name = "uuid", strategy = "uuid2")
+    private Integer id;
+//    @Column(name = "numcode")
+//    private String numCode;
     @Column(name = "charcode")
     private String charCode;
-    @Column(name = "nominal")
-    private String nominal;
-    @Column(name = "Name")
+//    @Column(name = "nominal")
+//    private String nominal;
+    @Column(name = "name")
     private String name;
-    @Column(name = "Value")
+    @Column(name = "value")
     private Double value;
     @Column(name = "date")
     private LocalDate date;
@@ -32,21 +33,21 @@ public class ValuteModel {
     public ValuteModel() {
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getNumCode() {
-        return numCode;
-    }
-
-    public void setNumCode(String numCode) {
-        this.numCode = numCode;
-    }
+//    public String getNumCode() {
+//        return numCode;
+//    }
+//
+//    public void setNumCode(String numCode) {
+//        this.numCode = numCode;
+//    }
 
     public String getCharCode() {
         return charCode;
@@ -56,13 +57,13 @@ public class ValuteModel {
         this.charCode = charCode;
     }
 
-    public String getNominal() {
-        return nominal;
-    }
-
-    public void setNominal(String nominal) {
-        this.nominal = nominal;
-    }
+//    public String getNominal() {
+//        return nominal;
+//    }
+//
+//    public void setNominal(String nominal) {
+//        this.nominal = nominal;
+//    }
 
     public String getName() {
         return name;

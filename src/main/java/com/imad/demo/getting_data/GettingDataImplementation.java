@@ -6,9 +6,8 @@ import com.imad.demo.model.ValuteModel;
 import org.springframework.stereotype.Component;
 
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.net.MalformedURLException;
+import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -30,43 +29,32 @@ public class GettingDataImplementation implements GettingData {
     }
 
     @Override
-    public Set<ValuteModel> getValutesModel() {
-        try {
-
-            Set<ValuteModel> valuteModels = new HashSet<>();
-
+    public Set<ValuteModel> getValutesModel() throws Exception {
+        Set<ValuteModel> valuteModels = new HashSet<>();
+        ValCurs valcurs;
+        Unmarshaller jaxbUnmarshaller = null;
+        try
+        {
             URL url = new URL("http://www.cbr.ru/scripts/XML_daily.asp");
-
             JAXBContext jaxbContext = JAXBContext.newInstance(ValCurs.class);
-
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            ValCurs valcurs = (ValCurs) jaxbUnmarshaller.unmarshal(url);
-
-
-            /**
-             * format date into valid LocalDate object
-             */
-
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-            DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            String date1 = LocalDate.parse(valcurs.getDate(), formatter).format(formatter2);
-            LocalDate date2 = LocalDate.parse(date1);
-
-
-            for(Valute valute : valcurs.getValuteSet())
-            {
-                valute.setDate(date2) ;
-                valuteModels.add(convertDataModel.valutesToVauteModel(valute));
-            }
-
-            return valuteModels;
-
-
-        } catch (JAXBException | MalformedURLException e) {
-            e.printStackTrace();
-            return null;
+            jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            valcurs = (ValCurs) jaxbUnmarshaller.unmarshal(url);
+        }catch (Exception e)
+        {
+            System.err.println(" error in loading data from website, using default data from already stored xml");
+            File xmlFile = new File("src/main/resources/currenciesdata.xml");
+            valcurs = (ValCurs) jaxbUnmarshaller.unmarshal(xmlFile);
         }
-
+        /** format date into valid LocalDate object */
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String date1 = LocalDate.parse(valcurs.getDate(), formatter).format(formatter2);
+        LocalDate date2 = LocalDate.parse(date1);
+        for (Valute valute : valcurs.getValuteSet()) {
+            valute.setDate(date2);
+            valuteModels.add(convertDataModel.valutesToVauteModel(valute));
+        }
+        return valuteModels;
     }
 
 

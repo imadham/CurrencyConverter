@@ -12,11 +12,11 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Valute {
 
-    @XmlAttribute(name = "ID")
-    private String id;
+//    @XmlAttribute(name = "ID")
+//    private String id;
 
-    @XmlElement(name = "NumCode")
-    private String numCode;
+//    @XmlElement(name = "NumCode")
+//    private String numCode;
     @XmlElement(name = "CharCode")
     private String charCode;
     @XmlElement(name = "Nominal")
@@ -31,21 +31,21 @@ public class Valute {
     public Valute() {
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getNumCode() {
-        return numCode;
-    }
-
-    public void setNumCode(String numCode) {
-        this.numCode = numCode;
-    }
+//    public String getId() {
+//        return id;
+//    }
+//
+//    public void setId(String id) {
+//        this.id = id;
+//    }
+//
+//    public String getNumCode() {
+//        return numCode;
+//    }
+//
+//    public void setNumCode(String numCode) {
+//        this.numCode = numCode;
+//    }
 
     public String getCharCode() {
         return charCode;
@@ -92,8 +92,8 @@ public class Valute {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Valute valute = (Valute) o;
-        return id.equals(valute.id) &&
-                numCode.equals(valute.numCode) &&
+        return //id.equals(valute.id) &&
+                //numCode.equals(valute.numCode) &&
                 charCode.equals(valute.charCode) &&
                 nominal.equals(valute.nominal) &&
                 Name.equals(valute.Name) &&
@@ -103,14 +103,14 @@ public class Valute {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, numCode, charCode, nominal, Name, value, date);
+        return Objects.hash(/*id, numCode, */charCode, nominal, Name, value, date);
     }
 
     @Override
     public String toString() {
         return "Valute{" +
-                "id='" + id + '\'' +
-                ", numCode='" + numCode + '\'' +
+//                "id='" + id + '\'' +
+//                ", numCode='" + numCode + '\'' +
                 ", charCode='" + charCode + '\'' +
                 ", nominal='" + nominal + '\'' +
                 ", Name='" + Name + '\'' +

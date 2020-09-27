@@ -64,19 +64,18 @@ span
 #from, #to
 {
     /*float: left;*/
-
     width: auto;
-
+    margin-left: 10px;
 }
 #from
 {
-    margin-left: 40%;
+    /*margin-left: 40%;*/
     font-size: medium;
 }
 #to
 {
     font-size: xx-large;
-    margin-left: 35%;
+    /*margin-left: 35%;*/
 }
 
 .resultdiv
@@ -106,7 +105,7 @@ span
 
 .p-left
 {
-    padding-left: 15px;
+    /*padding-left: 15px;*/
 }
 
 #rates-div

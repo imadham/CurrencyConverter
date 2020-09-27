@@ -21,16 +21,16 @@
 
     <div  id= "user-input-div" >
 
-        <form th:action="@{/index}" th:object="${selectedcurrencies}" method="post">
-            <p class="user-input value"><span>Amount</span> <br><input type="number" step="any" min=0 th:field="*{amount}" required/></p>
+        <form th:action="@{/index}"  method="post">
+            <p class="user-input value"><span>Amount</span> <br><input type="number" step="any" min=0 required/></p>
             <p class="user-input"><span>From </span><br>
-                <select th:field="*{first}">
-                    <option th:each="i : ${valuteModels}" th:value="${i.getName()}" th:text="${i.getName()}" >USD</option>
+                <select >
+                    <option  >USD</option>
                 </select>
             </p>
             <p class="user-input"><span>To</span> <br>
                 <select th:field="*{second}">
-                    <option th:each="i : ${valuteModels}" th:value="${i.getName()}" th:text="${i.getName()}" >EURO</option>
+                    <option  >EURO</option>
                 </select>
             </p>
 
@@ -43,36 +43,33 @@
 <div class="p-3 mb-2 bg-primary text-white resultdiv">
 
 
-    <p id="from" th:utext="${results[0]}">1 USD = <br></p>
-    <p id="to" th:text="${results[1]}" >&nbsp; 77 RUR <br></p>
+    <p id="from" >1 USD = <br></p>
+    <p id="to" >&nbsp; 77 RUR <br></p>
 
 
 </div>
 
-<div id="rates-div" class="p-3 mb-2 bg-primary text-white" >&nbsp; Currency Exchange Rates </div>
+<div id="rates-div" class="p-3 mb-2 bg-primary text-white">Currency Exchange Rates </div>
 
 <div class="bg-primary text-white rates">
 
-    <div class="col-md-6 table-1">
-    <table class="table-responsive borderless rates1">
-        <thead>
-        <tr>
-            <th scope="col" class="col-md-6">Currency</th>
-            <th scope="col" class="col-md-6">Symbol</th>
-            <th scope="col" class="col-md-6 p-left">Price In Rubles</th>
-            <th scope="col" class="col-md-6 p-left">last updated</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="i : ${valuteModels}">
-            <td class="col-md-6" th:text="${i.getName()}">Австралийский доллар</td>
-            <td class="col-md-6" th:text="${i.getCharCode()}">Австралийский доллар</td>
-            <td class="col-md-6" th:text="${i.getValue()}">771</td>
-            <td class="col-md-6" th:text="${i.getDate()}">771</td>
-        </tr>
+    <div class="col-md-4 table-1">
+        <table class="table-responsive borderless rates1">
+            <thead>
+            <tr>
+                <th scope="col" class="col-md-3">Currency</th>
+                <th scope="col" class="col-md-3">Symbol</th>
+                <th scope="col" class="col-md-3 p-left">Price In Rubles</th>
+            </tr>
+            </thead>
+            <tbody>
 
-        </tbody>
-    </table>
+            <tr scope="col" class="col-md-3">no data to show</tr>
+            <tr scope="col" class="col-md-3">server error</tr>
+            <tr scope="col" class="col-md-3 p-left"> 0 </tr>
+
+            </tbody>
+        </table>
     </div>
 
 </div>

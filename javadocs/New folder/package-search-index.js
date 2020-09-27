@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.imad.demo"},{"l":"com.imad.demo.controllers"},{"l":"com.imad.demo.converters"},{"l":"com.imad.demo.dataloader"},{"l":"com.imad.demo.getting_data"},{"l":"com.imad.demo.model"},{"l":"com.imad.demo.repositories"},{"l":"com.imad.demo.services"}]
