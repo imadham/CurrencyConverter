@@ -2,8 +2,12 @@
 программа подключается к БД postgreSQL:
 
 url=jdbc:postgresql://localhost:5432/postgres
+
 username=postgres
+
 password=imad
+
+change username/password in application.properties
 
 для начала: mvnw spring-boot:run
 
