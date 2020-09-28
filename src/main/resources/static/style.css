@@ -80,7 +80,7 @@ span
 
 .resultdiv
 {
-    height: 75px;
+    height: auto;
     margin-bottom: 0px;
     margin-top: 0px;
     font-size: 0;
@@ -103,10 +103,6 @@ span
     padding-left: 3%;
 }
 
-.p-left
-{
-    /*padding-left: 15px;*/
-}
 
 #rates-div
 {
@@ -122,6 +118,21 @@ span
 .bg-color-white
 {
     background-color: white;
+}
+
+.history
+{
+    font-size: 14px;
+    height: auto;
+    width: 200px;
+    margin-left: 10px;
+    height: 50px;
+    border-radius: 10px;
+    padding-top: 15px;
+}
+.h
+{
+
 }
 
 

@@ -12,11 +12,6 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Valute {
 
-//    @XmlAttribute(name = "ID")
-//    private String id;
-
-//    @XmlElement(name = "NumCode")
-//    private String numCode;
     @XmlElement(name = "CharCode")
     private String charCode;
     @XmlElement(name = "Nominal")
@@ -30,22 +25,6 @@ public class Valute {
 
     public Valute() {
     }
-
-//    public String getId() {
-//        return id;
-//    }
-//
-//    public void setId(String id) {
-//        this.id = id;
-//    }
-//
-//    public String getNumCode() {
-//        return numCode;
-//    }
-//
-//    public void setNumCode(String numCode) {
-//        this.numCode = numCode;
-//    }
 
     public String getCharCode() {
         return charCode;
@@ -87,6 +66,16 @@ public class Valute {
         this.date = date;
     }
 
+
+    /**
+     * override equals and hashCode to remove duplicates in Set (Values with same values and only different id
+     * for better DB performance we can check if values are exists before inserting (same value and same date)
+     * this approach give better DB search but require more operations when inserting
+     * and will give bad performance in case of values updated hourly
+     *  TODO
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

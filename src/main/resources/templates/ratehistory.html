@@ -43,38 +43,38 @@
 <div class="p-3 mb-2 bg-primary text-white resultdiv">
 
 
-    <p id="from" th:utext="${results[0]}">1 USD = <br></p>
-    <p id="to" th:text="${results[1]}" >&nbsp; 77 RUR <br></p>
+    <p id="from" th:utext="${result[0]}">1 USD = <br></p>
+    <p id="to" th:text="${result[1]}" >&nbsp; 77 RUR <br></p>
     <p class="h"><a href="/history" class="history btn btn-outline-success bg-color-white">Exchange history </a></p>
     <br> <br>
 
 
 </div>
 
-<div id="rates-div" class="p-3 mb-2 bg-primary text-white" >&nbsp; Currency Exchange Rates </div>
+<div id="rates-div" class="p-3 mb-2 bg-primary text-white" th:utext="'Currency Exchange Rates as on ' + ${result[2]}" >&nbsp; Currency Exchange Rates </div>
 
 <div class="bg-primary text-white rates">
 
     <div class="col-md-6 table-1">
-    <table class="table-responsive borderless rates1">
-        <thead>
-        <tr>
-            <th scope="col" class="col-md-6">Currency</th>
-            <th scope="col" class="col-md-6">Symbol</th>
-            <th scope="col" class="col-md-6 p-left">Price In Rubles</th>
-            <th scope="col" class="col-md-6 p-left">last updated</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="i : ${valuteModels}">
-            <td class="col-md-6" th:text="${i.getName()}">Австралийский доллар</td>
-            <td class="col-md-6" th:text="${i.getCharCode()}">Австралийский доллар</td>
-            <td class="col-md-6" th:text="${i.getValue()}">771</td>
-            <td class="col-md-6" th:text="${i.getDate()}">771</td>
-        </tr>
+        <table class="table-responsive borderless rates1">
+            <thead>
+            <tr>
+                <th scope="col" class="col-md-6">Currency</th>
+                <th scope="col" class="col-md-6">Symbol</th>
+                <th scope="col" class="col-md-6 p-left">Price In Rubles</th>
+                <th scope="col" class="col-md-6 p-left">last updated</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="i : ${results}">
+                <td class="col-md-6" th:text="${i.getName()}">Австралийский доллар</td>
+                <td class="col-md-6" th:text="${i.getCharCode()}">Австралийский доллар</td>
+                <td class="col-md-6" th:text="${i.getValue()}">771</td>
+                <td class="col-md-6" th:text="${i.getDate()}">771</td>
+            </tr>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     </div>
 
 </div>

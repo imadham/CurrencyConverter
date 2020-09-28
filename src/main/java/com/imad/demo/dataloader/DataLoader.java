@@ -33,14 +33,17 @@ public class DataLoader implements CommandLineRunner {
             valutesModel = gettingData.getValutesModel();
 
             if (valutesModel.size() > 0) {
-                valuteService.deleteAll();
+                /**
+                 * uncomment this so it will delete all the data befor inserting new data
+                 */
+//                valuteService.deleteAll();
                 for (ValuteModel valuteModel : valutesModel) {
                     valuteService.save(valuteModel);
                 }
             }
         }catch (Exception e)
         {
-            throw e;
+            e.printStackTrace();
         }
     }
 }

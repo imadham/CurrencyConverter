@@ -11,12 +11,11 @@ public class ConvertDataModelImpl implements ConvertDataModel {
     @Override
     public ValuteModel valutesToVauteModel(Valute valute) {
         ValuteModel valuteModel = new ValuteModel();
-//        valuteModel.setId(valute.getId());
-//        valuteModel.setNumCode(valute.getNumCode());
         valuteModel.setCharCode(valute.getCharCode());
-//        valuteModel.setNominal(valute.getNominal());
         valuteModel.setName(valute.getName());
-        //convert to actual value
+        /**
+         * divide value by nominal to get actual price
+         */
         valuteModel.setValue(Double.parseDouble(valute.getValue().replace(",","."))/Integer.parseInt(valute.getNominal()));
         valuteModel.setDate(valute.getDate());
 
@@ -25,12 +24,12 @@ public class ConvertDataModelImpl implements ConvertDataModel {
     }
 
     @Override
+    /**
+     * no use for this method
+     */
     public Valute valuteModelToValute(ValuteModel valuteModel) {
         Valute valute = new Valute();
-//        valute.setId(valuteModel.getId());
-//        valute.setNumCode(valuteModel.getNumCode());
         valute.setCharCode(valuteModel.getCharCode());
-//        valute.setNominal(valuteModel.getNominal());
         valute.setName(valuteModel.getName());
         valute.setValue(""+valuteModel.getValue());
         valute.setDate(valuteModel.getDate());

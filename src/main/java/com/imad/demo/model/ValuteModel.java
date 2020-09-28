@@ -1,28 +1,23 @@
 package com.imad.demo.model;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
- * model for DB
+ * model for DB valutes
  */
 @Entity
 @Table(name = "valute")
-public class ValuteModel {
+public class ValuteModel{
 
     @Id
     @SequenceGenerator(name="seq-gen",sequenceName="MY_SEQ_GEN", initialValue=1, allocationSize=1)
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="seq-gen")
-    //@GenericGenerator(name = "uuid", strategy = "uuid2")
+
     private Integer id;
-//    @Column(name = "numcode")
-//    private String numCode;
     @Column(name = "charcode")
     private String charCode;
-//    @Column(name = "nominal")
-//    private String nominal;
     @Column(name = "name")
     private String name;
     @Column(name = "value")
@@ -41,14 +36,6 @@ public class ValuteModel {
         this.id = id;
     }
 
-//    public String getNumCode() {
-//        return numCode;
-//    }
-//
-//    public void setNumCode(String numCode) {
-//        this.numCode = numCode;
-//    }
-
     public String getCharCode() {
         return charCode;
     }
@@ -57,13 +44,6 @@ public class ValuteModel {
         this.charCode = charCode;
     }
 
-//    public String getNominal() {
-//        return nominal;
-//    }
-//
-//    public void setNominal(String nominal) {
-//        this.nominal = nominal;
-//    }
 
     public String getName() {
         return name;
@@ -87,5 +67,31 @@ public class ValuteModel {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "ValuteModel{" +
+                "id=" + id +
+                ", charCode='" + charCode + '\'' +
+                ", name='" + name + '\'' +
+                ", value=" + value +
+                ", date=" + date +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ValuteModel that = (ValuteModel) o;
+        return charCode.equals(that.charCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(charCode);
     }
 }

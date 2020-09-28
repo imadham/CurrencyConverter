@@ -21,16 +21,16 @@
 
     <div  id= "user-input-div" >
 
-        <form th:action="@{/index}"  method="post">
-            <p class="user-input value"><span>Amount</span> <br><input type="number" step="any" min=0 required/></p>
+        <form th:action="@{/index}" th:object="${selectedcurrencies}" method="post">
+            <p class="user-input value"><span>Amount</span> <br><input type="number" step="any" min=0 th:field="*{amount}" required/></p>
             <p class="user-input"><span>From </span><br>
-                <select >
-                    <option  >USD</option>
+                <select th:field="*{first}">
+                    <option th:each="i : ${valuteModels}" th:value="${i.getName()}" th:text="${i.getName()}" >USD</option>
                 </select>
             </p>
             <p class="user-input"><span>To</span> <br>
                 <select th:field="*{second}">
-                    <option  >EURO</option>
+                    <option th:each="i : ${valuteModels}" th:value="${i.getName()}" th:text="${i.getName()}" >EURO</option>
                 </select>
             </p>
 
@@ -53,21 +53,25 @@
 
 <div class="bg-primary text-white rates">
 
-    <div class="col-md-4 table-1">
+    <div class="col-md-6 table-1">
         <table class="table-responsive borderless rates1">
             <thead>
             <tr>
-                <th scope="col" class="col-md-3">Currency</th>
-                <th scope="col" class="col-md-3">Symbol</th>
-                <th scope="col" class="col-md-3 p-left">Price In Rubles</th>
+                <th scope="col" class="col-md-6">Transaction Date</th>
+                <th scope="col" class="col-md-6">From</th>
+                <th scope="col" class="col-md-6 ">To</th>
+                <th scope="col" class="col-md-6 ">Amount</th>
+                <th scope="col" class="col-md-6 ">currency rate date </th>
             </tr>
             </thead>
-            <tbody>
-
-            <tr scope="col" class="col-md-3">no data to show</tr>
-            <tr scope="col" class="col-md-3">server error</tr>
-            <tr scope="col" class="col-md-3 p-left"> 0 </tr>
-
+            <tbody >
+            <tr th:each="i : ${history}">
+                <td scope="col" class="col-md-6" th:text="${i.getExchangeDate()}">Date</td>
+                <td scope="col" class="col-md-6" th:text="${i.getCurrencyFrom()}">USD</td>
+                <td scope="col" class="col-md-6 " th:text="${i.getCurrencyTo()}"> EURO </td>
+                <td scope="col" class="col-md-6" th:text="${i.getAmount()}" >1</td>
+                <td scope="col" class="col-md-6 "> <a th:href="@{/rates/{date}(date = ${i.getRatesDate()})}" th:text="${i.getRatesDate()}" class="text-white rates"></a> </td>
+            </tr>
             </tbody>
         </table>
     </div>

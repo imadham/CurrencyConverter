@@ -48,8 +48,8 @@ password=imad
 # Valute
 модель для преобразования данных из xml в объект этого класса
 
-# ValuteModel
-модель для БД
+# ValuteModel, HistoryModel
+модель БД
 
-# ValuteServiceImplementation
+# ValuteServiceImplementation, HistoryServiceImpl
 сервис для сохранения, поиска и удаления данных в БД
